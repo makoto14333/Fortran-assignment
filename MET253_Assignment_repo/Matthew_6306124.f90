@@ -1,17 +1,34 @@
 !6306124
 Program Maths_results
 Implicit none
-Integer,Dimension(10)::a
+Integer,Dimension(10)::scores
 integer:: i
-do i,10
-a=(/85,62,45,91,38,74,55,88,61,47/)
-If(a>=80) 
-Print*, "A,Distinction"
-else if(a>=60),then 
-print*,"B,Credit"
-else if (a>=40),then
-print*,"C, Pass"
-else if (a<=39),then
-print*,"F,Fail"
-end if 
-End program Maths_results  
+CHARACTER(LEN=1):: grade
+CHARACTER(LEN=10):: remark          
+scores=(/85,62,45,91,38,74,55,88,61,47/)
+PRINT *,""
+PRINT *, "END-OF-SEMESTER MATHEMATICS REPORT"
+PRINT *,""
+PRINT *, "Student     Score     Grade     Remark"
+DO i=1,10
+IF (scores(i) >= 80 .AND. scores(i) <= 100) THEN
+grade = 'A'
+remark = 'Distinction'
+ELSE IF (scores(i) >= 60 .AND. scores(i) <= 79) THEN
+grade = 'B'
+remark = 'Credit'
+ELSE IF (scores(i) >= 40 .AND. scores(i) <= 59) THEN
+grade = 'C'
+remark = 'Pass'
+ELSE IF (scores(i) >= 0 .AND. scores(i) <= 39) THEN
+grade = 'F'
+remark = 'Fail'
+ELSE
+grade = '?'
+remark = 'Invalid'
+END IF
+PRINT *, "   ", i, "          ", scores(i), "        ", grade, "       ", remark
+END DO        
+PRINT *, " "
+PRINT *, "               END OF REPORT"
+END Program Maths_results
